@@ -23,9 +23,10 @@ class CAScraper():
         regDate = re.compile(r'[01][0-9]/[0-3][0-9]/[12][09][019][0-9]')
         regMainAct = re.compile(r'(.*?),(.*)')
         regVenue = re.compile(r'(.*)\s[-]\s(.*),\s(.*)$')
-        regBlues = re.compile(r'Blues At The Crossroads: The Robert Johnson Centennial')
-        regPeltier = re.compile(r'Bring Leonard Peltier Home in 2012')
-        regWS = re.compile(r'A Night at Woodstock')
+        
+        #regBlues = re.compile(r'Blues At The Crossroads: The Robert Johnson Centennial')
+        #regPeltier = re.compile(r'Bring Leonard Peltier Home in 2012')
+        #regWS = re.compile(r'A Night at Woodstock')
          
         csv = ''
         for row in tags:
@@ -37,9 +38,11 @@ class CAScraper():
                     text = regDate.findall(text)[0] + ','
                      
                 if (i == 1):
-                    if regBlues.findall(text) or regPeltier.findall(text) or regWS.findall(text):
-                        csv = csv[:-12]
-                        break
+                    
+                    #if regBlues.findall(text) or regPeltier.findall(text) or regWS.findall(text):
+                    #    csv = csv[:-12]
+                    #    break
+                    
                     if text[0] == '\"' and text[-2] == '\"':
                         text = text[1:-2].replace(',', '')
                     bandSplit = regMainAct.findall(text)
@@ -87,7 +90,27 @@ class CAScraper():
         csvFile = open(self.directory + 'BoxOfficeData' + numAppend + '.csv', 'a')
         
         """ Write headers """
-        csvFile.write('Date,Headliner,Openers,Venue,City,State,Promoter,SoldOutShows,TotalShows,Gross,Sold,Capacity,SoldRatio,TicketPrices,AvgPrice\n')
+        csvFile.write('Date,Headliner,Openers,Ve
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+nue,City,State,Promoter,SoldOutShows,TotalShows,Gross,Sold,Capacity,SoldRatio,TicketPrices,AvgPrice\n')
         
         for i in range(352):  #352 to run all data
             print('Loading file ' + str(i))
@@ -96,4 +119,4 @@ class CAScraper():
         csvFile.close()
     
 foo = CAScraper()
-foo.writeAllData('')
+foo.writeAllData('2')
