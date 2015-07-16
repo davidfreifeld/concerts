@@ -7,3 +7,4 @@ directory = 'C:/Users/David/workspace/concerts/'
 os.chdir(directory)
 
 boData = pd.read_csv('data/BoxOfficeData.csv')
+boData['Date'] = pd.to_datetime(boData['Date'])
