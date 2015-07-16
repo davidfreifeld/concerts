@@ -25,10 +25,10 @@ boData.ix[bGreaterSoldOut, 'SoldOutShows'] = \
 boData.ix[boData['TotalShows'] > 100, 'TotalShows'] = 1
 
 # remove entries with zero for SoldRatio
-boData = boData[boData['SoldRatio'] != 0]
+boData = boData.ix[boData['SoldRatio'] != 0]
 
 # remove entries with SoldRatio greater than one, after adjusting capacity for number of shows
 bSuperSORatio = boData['SoldRatio'] > 1
 boData.ix[bSuperSORatio, 'Capacity'] = boData.ix[bSuperSORatio, 'Capacity'] * boData.ix[bSuperSORatio, 'TotalShows']
 boData['SoldRatio'] = boData['Sold'] / boData['Capacity']
-boData = boData[boData['SoldRatio'] <= 1.0]
+boData = boData.ix[boData['SoldRatio'] <= 1.0]
